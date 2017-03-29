@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>9宫格</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="format-detection" content="email=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" href="style/reset.css">
+	<link rel="stylesheet" href="style/css.css">
+	
+</head>
+<body>
+	<div class="comment-img-container" id="swiper-container1"> 
+		<ul class="img-container" >
+			<li class="comment-img-item" style="background-image: url(images/small1.png);"></li>
+			<li class="comment-img-item" style="background-image: url(images/small2.png);"></li>
+			<li class="comment-img-item" style="background-image: url(images/small3.png);"></li>
+			<li class="comment-img-item" style="background-image: url(images/small1.png);"></li>
+			<li class="comment-img-item" style="background-image: url(images/small2.png);"></li>
+			<li class="comment-img-item" style="background-image: url(images/small3.png);"></li>
+
+		</ul>
+	</div>
+
+
+	<div class="swiper-container" id="swiper-container2">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/big1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="images/big2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="images/big3.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="images/big1.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="images/big2.jpg" alt=""></div>
+            <div class="swiper-slide"><img src="images/big3.jpg" alt=""></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        
+    </div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/swiper.min.js"></script>
+<script>
+	var mySwiper = new Swiper('.swiper-container',{
+		pagination: '.swiper-pagination',
+        paginationClickable: true,
+	})
+	$('#swiper-container2').hide();
+	$('.comment-img-item').click(function(){
+		var commentItem = $(this).closest('li');
+		var page = commentItem.index();
+		// console.log(page);
+		mySwiper.slideTo(page, 500, false);//切换到第n个slide，速度为.5秒
+		$(this).addClass('chrg-easing-easeInOutQuart');
+		$('#swiper-container2').fadeIn();
+	});
+	$('.swiper-slide').on('click',function(){
+		$('.swiper-container').fadeOut();
+	});
+</script>
+</html>
