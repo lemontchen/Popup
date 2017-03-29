@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="format-detection" content="email=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" href="style/reset.css">
+
+	<style>
+		body{
+			background-color: #fff;
+		}
+		.btn-boxs{
+			width: 100%;
+			overflow: hidden;
+			margin-top: 30px;
+		}
+		.btn-boxs li{
+			width: 42%;
+			float: left;
+			text-align: center;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			margin: 0 4% 4% 4%;
+			box-sizing:border-box;
+			-moz-box-sizing:border-box;	
+			-webkit-box-sizing:border-box;
+			padding: 8px 0;
+
+		}
+		.modal-overlay
+		{
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    z-index: -1;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.4);
+		    visibility: hidden;
+		    opacity: 0;
+		    -webkit-transition-duration: 400ms; 
+		    -moz-transition-duration: 400ms;
+		    -ms-transition-duration: 400ms;
+		    -o-transition-duration: 400ms;
+		    transition-duration: 400ms; 
+		}
+		.actions-modal.modal-in {
+		    -webkit-transition-duration: 300ms;
+		    -moz-transition-duration: 300ms;
+		    -ms-transition-duration: 300ms;
+		    -o-transition-duration: 300ms;
+		    transition-duration: 300ms;
+		    -webkit-transform: translate3d(0%, 0%, 0);
+		    -moz-transform: translate3d(0%, 0%, 0);
+		    -ms-transform: translate3d(0%, 0%, 0);
+		    -o-transform: translate3d(0%, 0%, 0);
+		    transform: translate3d(0%, 0%, 0);
+		}
+		.actions-modal {
+			z-index: -1;
+		    position: absolute;
+		    left: 0;
+		    bottom: 0;
+		    width: 100%;
+		    -webkit-transform: translate3d(0%, 100%, 0);
+		    -moz-transform: translate3d(0%, 100%, 0);
+		    -ms-transform: translate3d(0%, 100%, 0);
+		    -o-transform: translate3d(0%, 100%, 0);
+		    transform: translate3d(0%, 100%, 0);
+		}
+		.actions-modal-group {
+		    margin: 8px;
+		}
+		.actions-modal-button:first-child {
+		    border-radius: 4px 4px 0 0;
+		}
+		.actions-modal-button {
+		    width: 100%;
+		    text-align: center;
+		    font-size: 16px;
+		    color: #007aff;
+		    font-weight: normal;
+		    line-height: 44px;
+		    margin: 0;
+		    cursor: pointer;
+		    background: #f3f3f3;
+		    -webkit-box-sizing: border-box;
+		    -moz-box-sizing: border-box;
+		    box-sizing: border-box;
+		    display: block;
+		    border-bottom: 1px solid #d2d2d6;
+		}
+		.actions-modal-button:last-child {
+		    border: none;
+		    border-radius: 0 0 4px 4px;
+		}
+		.actions-modal-button:first-child:last-child {
+		    border-radius: 4px;
+		}
+		.actions-modal-button.actions-modal-button-red {
+		    color: #fc3e39;
+		}
+		.actions-modal-group {
+		    margin: 8px;
+		}
+	</style>
+</head>
+<body>
+	<div class="btn-boxs">
+		<ul>
+			<li id="alert">Action下弹框</li>
+			
+		</ul>
+	</div>
+	<!-- 标题文字提示div -->
+	<div class="modal-overlay "></div>
+	<div class="actions-modal" style="margin-top: -78.5px;">
+		<div class="actions-modal-group"><span class="actions-modal-button">提示</span><span class="actions-modal-button actions-modal-button-red">红色按钮 </span></div>
+		<div class="actions-modal-group"><span class="actions-modal-button actions-modal-button-bold">关闭</span></div>
+	</div>
+
+
+</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script>
+	// 标题文字提示JS
+		$('#alert').on('click',function(){
+			$('.modal-overlay').css({'visibility':'visible','opacity':'1','zIndex':'10000'});
+			$('.actions-modal').addClass('modal-in').css('zIndex','11000');
+		});
+		$('.actions-modal-button-bold,.modal-overlay').on('click',function(){
+			$('.modal-overlay').css({'visibility':'hidden','opacity':'0','zIndex':'-1'});
+			$('.actions-modal').removeClass('modal-in').css('zIndex','-1');;
+		});
+
+	</script>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="format-detection" content="email=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" href="style/reset.css">
+
+	<style>
+	/*input的style*/
+		body{
+			background-color: #fff;
+		}
+		.input-boxs{
+			padding-top: 30px;
+			margin-left: 4%;
+		}
+		.put-boxs{
+			width: 60%;
+			border-radius: 3px;
+			border: 1px solid #ccc;
+			height: 34px;
+			line-height: 34px;
+			padding-left: 6px;
+		}
+
+
+
+	/*弹窗的style*/
+		.btn-boxs{
+			width: 100%;
+			overflow: hidden;
+			margin-top: 30px;
+		}
+		.btn-boxs li{
+			width: 42%;
+			float: left;
+			text-align: center;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			margin: 0 4% 4% 4%;
+			box-sizing:border-box;
+			-moz-box-sizing:border-box;	
+			-webkit-box-sizing:border-box;
+			padding: 8px 0;
+
+		}
+		.modal-overlay
+		{
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    z-index: -1;
+		    width: 100%;
+		    height: 100%;
+		    background: rgba(0, 0, 0, 0.4);
+		    visibility: hidden;
+		    opacity: 0;
+		    -webkit-transition-duration: 400ms; 
+		    -moz-transition-duration: 400ms;
+		    -ms-transition-duration: 400ms;
+		    -o-transition-duration: 400ms;
+		    transition-duration: 400ms; 
+		}
+		.modal.modal-in {
+		    opacity: 1;
+		    -webkit-transition-duration: 400ms;
+		    -moz-transition-duration: 400ms;
+		    -ms-transition-duration: 400ms;
+		    -o-transition-duration: 400ms;
+		    transition-duration: 400ms;
+		    -webkit-transform: translate3d(0%, 0%, 0) scale(1);
+		    -moz-transform: translate3d(0%, 0%, 0) scale(1);
+		    -ms-transform: translate3d(0%, 0%, 0) scale(1);
+		    -o-transform: translate3d(0%, 0%, 0) scale(1);
+		    transform: translate3d(0%, 0%, 0) scale(1);
+		}
+		.modal {
+		    width: 270px;
+		    position: absolute;
+		    left: 50%;
+		    z-index: -1;
+		    margin-left: -135px;
+		    top: 50%;
+		    text-align: center;
+		    border-radius: 7px;
+		    opacity: 0;
+		    -webkit-transform: translate3d(0%, 0%, 0) scale(1.185);
+		    -moz-transform: translate3d(0%, 0%, 0) scale(1.185);
+		    -ms-transform: translate3d(0%, 0%, 0) scale(1.185);
+		    -o-transform: translate3d(0%, 0%, 0) scale(1.185);
+		    transform: translate3d(0%, 0%, 0) scale(1.185);
+		    -webkit-transition-property: -webkit-transform, opacity;
+		    -moz-transition-property: -moz-transform, opacity;
+		    -ms-transition-property: -ms-transform, opacity;
+		    -o-transition-property: -o-transform, opacity;
+		    transition-property: transform, opacity;
+		}
+		.modal-inner {
+		    padding: 15px;
+		    border-bottom: 1px solid #b5b5b5;
+		    border-radius: 7px 7px 0 0;
+		    background: #e8e8e8;
+		}
+		.modal-title {
+		    font-weight: 500;
+		    line-height: 36px;
+		    font-size: 18px;
+		    text-align: center;
+		}
+		.modal-buttons {
+		    height: 44px;
+		    overflow: hidden;
+		    display: -webkit-box;
+		    display: -moz-box;
+		    display: -ms-flexbox;
+		    display: -webkit-flex;
+		    display: flex;
+		    -webkit-justify-content: center;
+		    -moz-justify-content: center;
+		    -ms-justify-content: center;
+		    justify-content: center;
+		    border-radius: 0 0 7px 7px;
+		}
+
+	input.modal-prompt-input {
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	    height: 30px;
+	    background: #fff;
+	    margin: 0;
+	    margin-top: 15px;
+	    padding: 0 5px;
+	    border: 1px solid #a0a0a0;
+	    border-radius: 5px;
+	    width: 100%;
+	    font-size: 14px;
+	    font-family: inherit;
+	    display: block;
+	    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    -ms-appearance: none;
+	    appearance: none;
+	}
+	.modal-button {
+	    width: 100%;
+	    padding: 0 5px;
+	    height: 44px;
+	    font-size: 17px;
+	    line-height: 44px;
+	    text-align: center;
+	    color: #007aff;
+	    background: #e8e8e8;
+	    display: block;
+	    position: relative;
+	    white-space: nowrap;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+	    cursor: pointer;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	    border-right: 1px solid #b5b5b5;
+	}
+	.modal-button:last-child {
+	    border-right: none;
+	    border-radius: 0px 0px 7px 0px;
+	}
+	</style>
+</head>
+<body style="background-color: #fff;">
+	<div class="input-boxs"><label for="">name:</label><input type="text" class="put-boxs" placeholder="获取弹窗值"></div>
+	<div class="btn-boxs">
+		<ul>
+			<li id="btn">input框</li>
+		</ul>
+	</div>
+
+
+	<!-- 按钮div -->
+	<div class="modal-overlay"></div>
+		<div class="modal" style="margin-top: -62px;">
+			<div class="modal-inner">
+				<div class="modal-title">内容title</div>
+				<div class="modal-text">今天的状态怎么样?</div>
+				<input type="text" class="modal-prompt-input" >
+			</div>
+			<div class="modal-buttons">
+				<span class="modal-button">取消</span>
+				<span class="modal-button modal-button-bold">确定</span>
+			</div>
+		</div>
+	
+</body>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script>
+	
+	// 按钮JS
+		$('#btn').on('click',function(){
+			$('.modal-overlay').css({'visibility':'visible','opacity':'1','zIndex':'10000'});
+			$('.modal').addClass('modal-in').css('zIndex','11000');
+		});
+		$('.modal-button-bold').on('click',function(){
+			var value = $('.modal-prompt-input').val();
+	 		$('.put-boxs').val(value);
+			$('.modal-overlay').css({'visibility':'hidden','opacity':'0','zIndex':'-1'});
+			$('.modal').removeClass('modal-in').css('zIndex','-1');
+		});
+		$('.modal-button').on('click',function(){
+			$('.modal-overlay').css({'visibility':'hidden','opacity':'0','zIndex':'-1'});
+			$('.modal').removeClass('modal-in').css('zIndex','-1');
+		});
+		
+
+	</script>
+</html>

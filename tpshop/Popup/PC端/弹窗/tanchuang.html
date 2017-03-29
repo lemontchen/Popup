@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>弹窗</title>
+	<style>
+		.tanchuang_box{
+			display: none;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			left: 0px;
+			top: 0px;
+			background-color: #000;
+			background-color:rgba(0,0,0,.7); 
+		
+		}
+		.tc_contact{
+			
+			position: absolute;
+			position: relative;
+			width: 30%;
+			left: 35%;
+			top: 25%;
+			padding: 30px 20px;
+			background-color: #fff;
+			border-radius: 5px; 
+			box-shadow: 1px 2px 3px #313131;
+		}
+		.close{
+			font-family:  "Microsoft Yahei", "微软雅黑";
+			color: #000;
+			font-size: 15px;
+			line-height: 26px;
+			text-align: center;
+			width: 26px;
+			height: 26px;
+			border-radius: 15px;
+			border: 1px solid #ccc;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			cursor: pointer;
+		}
+		.tc_title{
+			text-align: center;
+			line-height: 32px;
+			font-size: 16px;
+			color: #333;
+			font-weight: 600;
+		}
+		.inputs ul{
+			margin: 0;
+			padding: 0;
+		}
+		.inputs li{
+			list-style: none;
+			overflow: hidden;
+			margin-top:15px; 
+			
+		}
+		.inputs label{
+			float: left;
+			width: 80px;
+			line-height: 32px;
+		}
+		.inputs .tc_put_boxs{
+			float: left;
+			width: 97%;
+			height: 32px;
+			line-height: 32px;
+		}
+		.tc_btnss{
+			margin: 25px auto;
+			display: block;
+			text-align: center; 
+
+		}
+		.tc_btnss button{
+			width: 120px;
+			height: 38px;
+			line-height: 38px;
+		}
+	</style>
+</head>
+<body>
+	<button  id="btn_box">点击</button>
+	<div class="tanchuang_box">
+		<div class="tc_contact">
+			<div class="close">
+				X
+			</div>
+			<p class="tc_title">弹窗Title</p>
+			您要查看的页面不存在或已删除！您要查看的页面不存在或已删除！您要查看的页面不存在或已删除！
+			<div class="inputs">
+				<ul>
+					<li><label for="">name：</label><input type="text" class="tc_put_boxs"></li>
+					<li><label for="">password：</label><input type="password" class="tc_put_boxs"></li>
+				</ul>
+				<div class="tc_btnss"><button>提交</button></div>
+			</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="jquery-1.10.1.min.js" ></script>
+<script>
+		$('#btn_box').on('click',function(){
+			$('.tanchuang_box').show();
+			$('.close').on('click',function(){
+				$('.tanchuang_box').hide();
+			});
+		});
+
+</script>
+
+</html>
